@@ -291,6 +291,64 @@ export default function Education() {
 
           </div>
 
+          {/* Minor Degree */}
+
+              <div className="timeline-item reveal left">
+
+                <div className="timeline-card">
+
+                  <div className="timeline-top">
+
+                    <span className="year">
+                      2025 – Present
+                    </span>
+
+                    <h2>
+                      Minor
+                    </h2>
+
+                  </div>
+
+                  <h3>
+                    APJ Abdul Kalam Technological University (KTU)
+                  </h3>
+
+                  <h4>
+                    Minor Degree in Robotics & Automation
+                  </h4>
+
+                  <p>
+
+                    Pursuing a multidisciplinary minor focused on
+                    Robotics, Automation, Embedded Systems,
+                    Industrial IoT, Sensors, Control Systems and
+                    Intelligent Autonomous Technologies.
+                    This program complements my Computer Science
+                    degree by integrating software engineering
+                    with modern robotic and automation solutions.
+
+                  </p>
+
+                  <div className="tags">
+
+                    <span>Robotics</span>
+
+                    <span>Automation</span>
+
+                    <span>Embedded Systems</span>
+
+                    <span>Industrial IoT</span>
+
+                    <span>Control Systems</span>
+
+                    <span>Sensors</span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
         </div>
 
 
