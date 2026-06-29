@@ -106,7 +106,7 @@ export default function Achievements() {
 
   return (
 
-    <section className="achievements-page" id="achievements">
+    <section className="achievements-page">
 
       <div className="achievement-grid"></div>
 

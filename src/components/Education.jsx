@@ -102,7 +102,7 @@ export default function Education() {
 
   return (
 
-    <section className="education-page" id="education">
+    <section className="education-page" >
 
       {/* Grid */}
 

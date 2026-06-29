@@ -14,21 +14,20 @@ import {
 const programming = [
   { icon: <Terminal />, name: "Python", percent: 95 },
   { icon: <Code />, name: "Java", percent: 85 },
-  { icon: <Code />, name: "JavaScript", percent: 90 },
+  { icon: <Code />, name: "JavaScript", percent: 50 },
   { icon: <Storage />, name: "SQL", percent: 85 },
 ];
 
 const frontend = [
   { icon: <Web />, name: "React", percent: 90 },
   { icon: <Web />, name: "HTML5", percent: 95 },
-  { icon: <Web />, name: "CSS3", percent: 92 },
   { icon: <Web />, name: "Tailwind CSS", percent: 95 },
 ];
 
 const backend = [
   { icon: <Dns />, name: "Node.js", percent: 88 },
   { icon: <Api />, name: "Express.js", percent: 85 },
-  { icon: <Api />, name: "FastAPI", percent: 75 },
+  { icon: <Api />, name: "FastAPI", percent: 50 },
 ];
 
 const database = [
@@ -37,15 +36,15 @@ const database = [
 ];
 
 const ai = [
-  { icon: <Psychology />, name: "TensorFlow", percent: 78 },
-  { icon: <Psychology />, name: "PyTorch", percent: 80 },
-  { icon: <Psychology />, name: "OpenAI APIs", percent: 90 },
+  { icon: <Psychology />, name: "TensorFlow", percent: 50 },
+  { icon: <Psychology />, name: "PyTorch", percent: 50 },
+  { icon: <Psychology />, name: "OpenAI APIs", percent: 50 },
 ];
 
 const tools = [
   { icon: <Build />, name: "Git", percent: 95 },
   { icon: <Build />, name: "GitHub", percent: 95 },
-  { icon: <Build />, name: "Docker", percent: 70 },
+  { icon: <Build />, name: "Docker", percent: 60 },
 ];
 
 const categories = [

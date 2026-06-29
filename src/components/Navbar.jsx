@@ -67,9 +67,7 @@ function Navbar() {
           <a href="https://linkedin.com/in/krishnanjaly-s-70734a291" target="_blank" rel="noreferrer" className="rounded-full p-2 text-gray-300 hover:text-blue-400 transition">
             <FaLinkedin size={20} />
           </a>
-          <a href="/resume.pdf" className="primaryBtn rounded-full px-5 py-2.5 font-semibold text-sm">
-            Resume
-          </a>
+          
         </div>
 
         <button className="lg:hidden text-3xl text-white" onClick={() => setOpen(!open)}>

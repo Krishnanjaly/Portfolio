@@ -90,55 +90,6 @@ const sendEmail = (e) => {
 
       <div className="noise-overlay"></div>
 
-      {/* ===========================
-            NAVBAR
-      =========================== */}
-
-      <nav className="navbar">
-
-        <div className="nav-container">
-
-          <h2 className="logo">
-
-            Krishnanjaly S
-
-          </h2>
-
-          <div className="nav-links">
-
-            <a href="/">Home</a>
-
-            <a href="/about">About</a>
-
-            <a href="/skills">Skills</a>
-
-            <a href="/projects">Projects</a>
-
-            <a
-              href="/contact"
-              className="active"
-            >
-              Contact
-            </a>
-
-          </div>
-
-          <a
-  href="/resume/Krishnanjaly_Resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="resume-btn"
->
-  Resume
-</a>
-
-        </div>
-
-      </nav>
-
-
-
-
 
       <main className="contact-main">
 

@@ -75,7 +75,7 @@ export default function Hero() {
 
   return (
 
-    <section className="hero-section" id="home">
+    <section className="hero-section">
 
       {/* Grid Background */}
 
@@ -136,7 +136,7 @@ export default function Hero() {
 
     <span> Express</span>,
 
-    <span> React Native</span>
+    <span> React Native </span>
 
     and
 
