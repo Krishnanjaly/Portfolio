@@ -1,117 +1,314 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin, FaArrowDown } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import "./Hero.css";
 
-const roles = [
-  "Computer Science Engineer",
-  "AI Developer",
-  "Full Stack Developer",
-  "Data Science Student",
-];
+import {
+  Code2,
+  Database,
+  Brain,
+  ArrowRight,
+  Download,
+} from "lucide-react";
 
-function Hero() {
+import profile from "../assets/profile1.jpeg"; // Change to your image
+
+export default function Hero() {
+
+  const roles = [
+    "Full Stack Developer",
+    "AI Enthusiast",
+    "MERN Stack Developer",
+    "Data Science Student",
+    "Problem Solver",
+  ];
+
   const [text, setText] = useState("");
+
   const [roleIndex, setRoleIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
+
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const [typingSpeed, setTypingSpeed] = useState(100);
 
   useEffect(() => {
-    const current = roles[roleIndex];
 
-    const timer = setTimeout(() => {
-      if (!deleting) {
-        setText(current.substring(0, text.length + 1));
-        if (text === current) {
-          setTimeout(() => setDeleting(true), 1500);
+    const currentRole = roles[roleIndex];
+
+    const timeout = setTimeout(() => {
+
+      if (!isDeleting) {
+
+        setText(currentRole.substring(0, text.length + 1));
+
+        if (text === currentRole) {
+
+          setTimeout(() => {
+
+            setIsDeleting(true);
+
+          }, 1800);
+
+          setTypingSpeed(70);
+
         }
+
       } else {
-        setText(current.substring(0, text.length - 1));
-        if (text === "") {
-          setDeleting(false);
-          setRoleIndex((roleIndex + 1) % roles.length);
-        }
-      }
-    }, deleting ? 40 : 90);
 
-    return () => clearTimeout(timer);
-  }, [text, deleting, roleIndex]);
+        setText(currentRole.substring(0, text.length - 1));
+
+        if (text === "") {
+
+          setIsDeleting(false);
+
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+
+          setTypingSpeed(120);
+
+        }
+
+      }
+
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+
+  }, [text, isDeleting, roleIndex]);
 
   return (
-    <section id="home" className="section relative overflow-hidden pt-28 lg:pt-32">
-      <div className="absolute top-[-220px] right-[-180px] h-[420px] w-[420px] rounded-full bg-blue-500/15 blur-[140px]" />
-      <div className="absolute bottom-[-180px] left-[-120px] h-[380px] w-[380px] rounded-full bg-cyan-400/10 blur-[140px]" />
 
-      <div className="section-shell grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9 }}
-          className="relative"
-        >
-          <div className="inline-flex items-center gap-3 rounded-full border border-blue-400/25 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-200">
-            <span className="h-2.5 w-2.5 rounded-full bg-blue-400" />
-            Available for internships and collaborations
+    <section className="hero-section" id="home">
+
+      {/* Grid Background */}
+
+      <div className="grid-background"></div>
+
+      {/* Noise */}
+
+      <div className="noise-overlay"></div>
+
+      {/* Glow */}
+
+      <div className="hero-glow glow-left"></div>
+
+      <div className="hero-glow glow-right"></div>
+
+      <div className="hero-container">
+        {/* ==========================
+      LEFT SIDE
+========================== */}
+
+<div className="hero-left">
+
+  <span className="hero-label">
+    HELLO, I'M
+  </span>
+
+  <h1>
+    Krishnanjaly S.
+  </h1>
+
+  <h3 className="typing">
+
+    {text}
+
+    <span className="cursor">|</span>
+
+  </h3>
+
+  <p>
+
+    Computer Science student specializing in the
+    intersection of
+
+    <span> Artificial Intelligence </span>
+
+    and
+
+    <span> Full Stack Engineering</span>.
+
+    Passionate about creating intelligent,
+    scalable and user-centric applications using
+
+    <span> React</span>,
+
+    <span> Node.js</span>,
+
+    <span> MongoDB</span>,
+
+    <span> Express</span>,
+
+    <span> React Native</span>
+
+    and
+
+    <span> Data Science</span>.
+
+  </p>
+
+  <div className="hero-buttons">
+
+    <a
+      href="#projects"
+      className="primary-btn"
+    >
+
+      View My Projects
+
+      <ArrowRight size={18} />
+
+    </a>
+
+    <a
+      href="/resume/Krishnanjaly_Resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="secondary-btn"
+    >
+
+      Download Resume
+
+      <Download size={18} />
+
+    </a>
+
+  </div>
+
+</div>
+                {/* ==========================
+              RIGHT SIDE
+        ========================== */}
+
+        <div className="hero-right">
+
+          {/* Rotating Rings */}
+
+          <div className="ring ring1"></div>
+
+          <div className="ring ring2"></div>
+
+          <div className="ring ring3"></div>
+
+
+
+
+
+          {/* Profile */}
+
+          <div className="profile-wrapper">
+
+            <div className="profile-card">
+
+              <img
+                src={profile}
+                alt="Krishnanjaly"
+                className="profile-image"
+              />
+
+            </div>
+
           </div>
 
-          <h1 className="mt-7 text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-            Hi,
-            <br />
-            I&apos;m <span className="gradientText whitespace-nowrap">Krishnanjaly S</span>
-          </h1>
 
-          <h2 className="mt-5 h-14 text-2xl font-semibold text-gray-300 sm:text-3xl">
-            {text}
-            <span className="ml-1 animate-pulse text-blue-400">|</span>
-          </h2>
 
-          <p className="mt-7 max-w-2xl text-base leading-8 text-gray-400 sm:text-lg">
-            I build thoughtful AI-powered products, modern web experiences, and scalable software that turns ideas into dependable digital experiences.
-          </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            
-            <a href="#projects" className="secondaryBtn btn inline-flex items-center justify-center px-7 py-3 font-semibold">
-              View Projects
-            </a>
+
+          {/* Floating Tech Card */}
+
+          <div className="floating-card code-card">
+
+            <Code2 size={28} />
+
           </div>
 
-          <div className="mt-16 flex gap-5">
-            <a href="https://github.com/Krishnanjaly" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 p-3 text-gray-300 transition hover:border-blue-400 hover:text-blue-400">
-              <FaGithub size={24} />
-            </a>
-            <a href="https://linkedin.com/in/krishnanjaly-s-70734a291" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 p-3 text-gray-300 transition hover:border-blue-400 hover:text-blue-400">
-              <FaLinkedin size={24} />
-            </a>
-          </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="relative flex justify-center"
-        >
-          <div className="absolute h-[440px] w-[440px] rounded-full bg-blue-500/20 blur-[120px]" />
-          <div className="relative rounded-[36px] border border-white/10 bg-white/5 p-3 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
-            <img src="/profile1.jpeg" alt="profile" className="w-full max-w-[380px] rounded-[28px] object-cover" />
+
+
+
+          <div className="floating-card database-card">
+
+            <Database size={28} />
+
           </div>
 
-          <motion.div animate={{ y: [0, -16, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="glass absolute -top-6 right-2 rounded-2xl px-4 py-3 text-sm font-medium">
-            💻 React Developer
-          </motion.div>
-          <motion.div animate={{ y: [0, 18, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="glass absolute bottom-20 -left-4 rounded-2xl px-4 py-3 text-sm font-medium">
-            🤖 AI Engineer
-          </motion.div>
-          <motion.div animate={{ y: [0, -14, 0] }} transition={{ repeat: Infinity, duration: 5 }} className="glass absolute bottom-[-18px] right-10 rounded-2xl px-4 py-3 text-sm font-medium">
-            📊 Data Science
-          </motion.div>
-        </motion.div>
+
+
+
+
+          <div className="floating-card ai-card">
+
+            <Brain size={28} />
+
+          </div>
+
+
+
+
+
+          {/* Availability */}
+
+          <div className="status-card">
+
+            <span className="status-dot"></span>
+
+            <span>
+
+              Available for Opportunities
+
+            </span>
+
+          </div>
+
+
+
+
+
+          {/* Projects Counter */}
+
+          <div className="projects-card">
+
+            <h2>
+
+              15+
+
+            </h2>
+
+            <p>
+
+              Projects Completed
+
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <motion.div animate={{ y: [0, 12, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <FaArrowDown className="text-2xl text-blue-400" />
-      </motion.div>
-    </section>
-  );
-}
 
-export default Hero;
+
+
+
+      {/* ==========================
+          SCROLL INDICATOR
+      ========================== */}
+
+      <div className="scroll-indicator">
+
+        <span>
+
+          Scroll to Explore
+
+        </span>
+
+        <div className="mouse">
+
+          <div className="wheel"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
+
+}

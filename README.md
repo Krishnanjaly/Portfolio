@@ -161,7 +161,7 @@ A Smart India Hackathon project that estimates a user's daily water consumption 
 
 Computer Science & Engineering
 
-**CGPA:** 8.54
+**CGPA:** 8.74
 
 ---
 

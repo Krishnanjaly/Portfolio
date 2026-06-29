@@ -8,7 +8,7 @@ const timeline = [
     title: "B.Tech Computer Science & Engineering",
     organization: "St. Joseph's College of Engineering & Technology, Palai",
     duration: "2023 - Present",
-    description: "Currently pursuing Bachelor's degree in Computer Science and Engineering with a CGPA of 8.54. Focused on Software Engineering, Artificial Intelligence, Data Structures, DBMS, Operating Systems, and Full Stack Development.",
+    description: "Currently pursuing Bachelor's degree in Computer Science and Engineering with a CGPA of 8.74. Focused on Software Engineering, Artificial Intelligence, Data Structures, DBMS, Operating Systems, and Full Stack Development.",
   },
   {
     id: 2,

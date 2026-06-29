@@ -1,81 +1,291 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Education.css";
+
 import {
-  School,
-  Star,
-  TrendingUp,
-  AllInclusive,
-} from "@mui/icons-material";
+  GraduationCap,
+  BookOpen,
+  Brain,
+  Database,
+  Code2,
+  Network,
+  Cpu,
+  BarChart3,
+  Terminal,
+} from "lucide-react";
 
-const Education = () => {
+export default function Education() {
+
+  const subjects = [
+
+    {
+      icon: <BookOpen size={38} />,
+      title: "Data Structures",
+    },
+
+    {
+      icon: <Terminal size={38} />,
+      title: "Algorithms",
+    },
+
+    {
+      icon: <Database size={38} />,
+      title: "Database Systems",
+    },
+
+    {
+      icon: <Cpu size={38} />,
+      title: "Operating Systems",
+    },
+
+    {
+      icon: <Network size={38} />,
+      title: "Computer Networks",
+    },
+
+    {
+      icon: <Code2 size={38} />,
+      title: "Software Engineering",
+    },
+
+    {
+      icon: <Brain size={38} />,
+      title: "Artificial Intelligence",
+    },
+
+    {
+      icon: <BarChart3 size={38} />,
+      title: "Statistics",
+    },
+
+    {
+      icon: <GraduationCap size={38} />,
+      title: "Web Technologies",
+    },
+
+  ];
+
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("active");
+
+          }
+
+        });
+
+      },
+
+      {
+
+        threshold: 0.15,
+
+      }
+
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+
+  }, []);
+
   return (
-    <section className="education-section" id="education">
 
-      {/* Heading */}
+    <section className="education-page" id="education">
 
-      <div className="education-heading">
-        <span className="education-subtitle">
-          ACADEMIC TRAJECTORY
-        </span>
+      {/* Grid */}
 
-        <h2>Education Journey</h2>
-      </div>
+      <div className="edu-grid"></div>
 
-      {/* Timeline */}
+      {/* Noise */}
 
-      <div className="timeline">
+      <div className="noise-overlay"></div>
 
-        <div className="timeline-line"></div>
+      {/* Glow */}
 
-        {/* =========================
-            FIRST CARD
+      <div className="edu-glow glow-one"></div>
+
+      <div className="edu-glow glow-two"></div>
+
+      <div className="education-container">
+
+        {/* ==========================
+            HERO
         ========================== */}
 
-        <div className="timeline-item">
+        <div className="education-hero reveal">
 
-          <div className="timeline-left">
+          <span>
 
-            <h3>B.Tech in Computer Science & Engineering</h3>
+            EDUCATION
 
-            <span>2023 - Present</span>
+          </span>
 
-          </div>
+          <h1>
 
-          <div className="timeline-node"></div>
+            Education Journey
 
-          <div className="timeline-right glass-card">
+          </h1>
 
-            <div className="mobile-title">
+          <p>
 
-              <h3>B.Tech in Computer Science & Engineering</h3>
+            My academic journey has equipped me with
+            strong foundations in
 
-              <span>2023 - Present</span>
+            <strong> Computer Science</strong>,
+
+            <strong> Artificial Intelligence</strong>,
+
+            <strong> Data Science</strong>
+
+            and modern software engineering.
+
+          </p>
+
+        </div>
+                {/* ==========================
+            TIMELINE
+        ========================== */}
+
+        <div className="education-timeline">
+
+          {/* B.Tech */}
+
+          <div className="timeline-item reveal left">
+
+            <div className="timeline-card">
+
+              <div className="timeline-top">
+
+                <span className="year">
+
+                  2023 – Present
+
+                </span>
+
+                <h2>
+
+                  8.74
+
+                </h2>
+
+              </div>
+
+              <h3>
+
+                St. Joseph's College of Engineering
+                and Technology, Palai
+
+              </h3>
+
+              <h4>
+
+                Bachelor of Technology
+                (Computer Science & Engineering)
+
+              </h4>
+
+              <p>
+
+                Focused on software engineering,
+                operating systems,
+                algorithms,
+                databases,
+                artificial intelligence,
+                computer networks
+                and full stack development.
+
+              </p>
+
+              <div className="tags">
+
+                <span>Data Structures</span>
+
+                <span>Algorithms</span>
+
+                <span>Operating Systems</span>
+
+                <span>AI</span>
+
+                <span>Web Development</span>
+
+              </div>
 
             </div>
 
-            <p className="college">
+          </div>
 
-              <School />
+                    {/* IIT Madras */}
 
-              St. Joseph's College of Engineering & Technology, Palai
+          <div className="timeline-item reveal right">
 
-            </p>
+            <div className="timeline-card">
 
-            <p className="description">
+              <div className="timeline-top">
 
-              Pursuing a Bachelor's degree in Computer Science &
-              Engineering with a strong focus on software engineering,
-              algorithms, operating systems, computer networks and
-              full-stack development. Actively involved in building
-              AI-powered applications and modern web technologies.
+                <span className="year">
 
-            </p>
+                  2024 – Present
 
-            <div className="highlight">
+                </span>
 
-              <Star />
+                <h2>
 
-              CGPA : 8.54
+                  6.25
+
+                </h2>
+
+              </div>
+
+              <h3>
+
+                Indian Institute of Technology Madras
+
+              </h3>
+
+              <h4>
+
+                BS in Data Science and Applications
+
+              </h4>
+
+              <p>
+
+                Pursuing interdisciplinary studies in
+                Programming,
+                Statistics,
+                Machine Learning,
+                Artificial Intelligence,
+                Data Analytics,
+                Mathematics
+                and Computational Thinking.
+
+              </p>
+
+              <div className="tags">
+
+                <span>Python</span>
+
+                <span>Statistics</span>
+
+                <span>Machine Learning</span>
+
+                <span>Data Science</span>
+
+                <span>Visualization</span>
+
+              </div>
 
             </div>
 
@@ -83,74 +293,137 @@ const Education = () => {
 
         </div>
 
-        {/* =========================
-            SECOND CARD
+
+
+
+
+        {/* ==========================
+             STATS
         ========================== */}
 
-        <div className="timeline-item reverse">
+        <div className="education-stats reveal">
 
-          <div className="timeline-left glass-card">
+          <div className="stat-box">
 
-            <div className="mobile-title">
+            <h2>
 
-              <h3>BS in Data Science & Applications</h3>
+              8.74
 
-              <span>2024 - Present</span>
+            </h2>
 
-            </div>
+            <p>
 
-            <p className="college">
-
-              <School />
-
-              IIT Madras
+              Current B.Tech CGPA
 
             </p>
-
-            <p className="description">
-
-              Simultaneously pursuing the BS Degree in Data Science &
-              Applications offered by IIT Madras, specializing in
-              machine learning, statistics, Python programming,
-              data visualization and artificial intelligence.
-
-            </p>
-
-            <div className="highlight">
-
-              Pursuing Excellence
-
-              <TrendingUp />
-
-            </div>
 
           </div>
 
-          <div className="timeline-node"></div>
 
-          <div className="timeline-right desktop-title">
 
-            <h3>BS in Data Science & Applications</h3>
 
-            <span>2024 - Present</span>
+
+          <div className="stat-box">
+
+            <h2>
+
+              6.25
+
+            </h2>
+
+            <p>
+
+              BS CGPA
+
+            </p>
+
+          </div>
+
+
+
+
+
+          <div className="stat-box">
+
+            <h2>
+
+              2+
+
+            </h2>
+
+            <p>
+
+              Degree Programs
+
+            </p>
+
+          </div>
+
+
+
+
+
+          <div className="stat-box">
+
+            <h2>
+
+              10+
+
+            </h2>
+
+            <p>
+
+              Core Subjects
+
+            </p>
 
           </div>
 
         </div>
 
-        {/* Bottom */}
+                {/* ==========================
+            CORE SUBJECTS
+        ========================== */}
 
-        <div className="timeline-footer">
+        <div className="subjects-section reveal">
 
-          <div className="footer-card">
+          <div className="section-title">
 
-            <AllInclusive />
+            <h2>
 
-            <span>
+              Core Subjects
 
-              Continuous Learning & Research Focused
+            </h2>
 
-            </span>
+          </div>
+
+          <div
+            className="subjects-slider"
+            ref={sliderRef}
+          >
+
+            {subjects.map((subject, index) => (
+
+              <div
+                className="subject-card"
+                key={index}
+              >
+
+                <div className="subject-icon">
+
+                  {subject.icon}
+
+                </div>
+
+                <h3>
+
+                  {subject.title}
+
+                </h3>
+
+              </div>
+
+            ))}
 
           </div>
 
@@ -159,7 +432,7 @@ const Education = () => {
       </div>
 
     </section>
-  );
-};
 
-export default Education;
+  );
+
+}

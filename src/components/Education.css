@@ -1,392 +1,826 @@
-/* ===========================
-   EDUCATION SECTION
-=========================== */
+/* ==========================================
+   GOOGLE FONT
+========================================== */
 
-.education-section {
-  position: relative;
-  min-height: 100vh;
-  padding: 120px 8%;
-  background: #050816;
-  overflow: hidden;
-  color: white;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
+/* ==========================================
+   ROOT
+========================================== */
+
+.education-page{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#070B16;
+
+    color:#fff;
+
+    padding:120px 8%;
+
 }
 
-/* ===========================
-   HEADING
-=========================== */
+/* ==========================================
+   GRID
+========================================== */
 
-.education-heading {
-  text-align: center;
-  margin-bottom: 120px;
+.edu-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+    background-size:50px 50px;
+
+    animation:gridMove 15s linear infinite;
+
 }
 
-.education-subtitle {
-  display: inline-block;
-  color: #4f8cff;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  font-size: 13px;
-  margin-bottom: 20px;
-  font-weight: 600;
+@keyframes gridMove{
+
+from{
+
+background-position:0 0;
+
 }
 
-.education-heading h2 {
-  font-size: 64px;
-  font-weight: 700;
-  font-family: "Space Grotesk", sans-serif;
-}
+to{
 
-/* ===========================
-   TIMELINE
-=========================== */
+background-position:50px 50px;
 
-.timeline {
-  position: relative;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.timeline-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  transform: translateX(-50%);
-  background: linear-gradient(
-      to bottom,
-      #4f8cff,
-      #82a8ff,
-      transparent
-  );
-
-  box-shadow: 0 0 20px #4f8cff;
-}
-
-.timeline-item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 80px 1fr;
-  gap: 40px;
-  align-items: center;
-  margin-bottom: 120px;
-}
-
-.timeline-node {
-  width: 24px;
-  height: 24px;
-  background: #4f8cff;
-  border-radius: 50%;
-  margin: auto;
-  border: 5px solid #050816;
-  z-index: 20;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-
-0%{
-box-shadow:0 0 0 0 rgba(79,140,255,.8);
-transform:scale(.95);
-}
-
-70%{
-box-shadow:0 0 0 15px rgba(79,140,255,0);
-transform:scale(1);
-}
-
-100%{
-box-shadow:0 0 0 0 rgba(79,140,255,0);
-transform:scale(.95);
 }
 
 }
 
-/* ===========================
-   TEXT
-=========================== */
+/* ==========================================
+   NOISE
+========================================== */
 
-.timeline-left h3,
-.desktop-title h3,
-.mobile-title h3{
+.noise-overlay{
 
-font-size:32px;
-font-weight:700;
+position:absolute;
+
+inset:0;
+
+opacity:.03;
+
+pointer-events:none;
+
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
 }
 
-.timeline-left span,
-.desktop-title span,
-.mobile-title span{
+/* ==========================================
+   GLOW
+========================================== */
 
-display:block;
-margin-top:10px;
-letter-spacing:3px;
-color:#4f8cff;
+.edu-glow{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(160px);
+
+}
+
+.glow-one{
+
+width:500px;
+
+height:500px;
+
+background:#4F8CFF;
+
+top:-150px;
+
+left:-180px;
+
+opacity:.12;
+
+}
+
+.glow-two{
+
+width:500px;
+
+height:500px;
+
+background:#2563eb;
+
+bottom:-150px;
+
+right:-180px;
+
+opacity:.12;
+
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.education-container{
+
+max-width:1200px;
+
+margin:auto;
+
+position:relative;
+
+z-index:2;
+
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.education-hero{
+
+text-align:center;
+
+margin-bottom:110px;
+
+}
+
+.education-hero span{
+
+color:#4F8CFF;
+
+letter-spacing:.25em;
+
 font-size:13px;
-text-transform:uppercase;
+
+font-family:"Inter";
 
 }
 
-.timeline-left{
+.education-hero h1{
 
-text-align:right;
+font-family:"Space Grotesk";
 
-}
+font-size:70px;
 
-.desktop-title{
-
-text-align:left;
+margin:20px 0;
 
 }
 
-.mobile-title{
+.education-hero p{
 
-display:none;
+max-width:760px;
 
-}
+margin:auto;
 
-/* ===========================
-   GLASS CARD
-=========================== */
-
-.glass-card{
-
-background:rgba(255,255,255,.04);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:30px;
-
-padding:35px;
-
-transition:.45s;
-
-}
-
-.glass-card:hover{
-
-transform:translateY(-8px);
-
-border-color:#4f8cff;
-
-box-shadow:
-0 20px 40px rgba(0,0,0,.4),
-0 0 20px rgba(79,140,255,.25);
-
-}
-
-/* ===========================
-   CONTENT
-=========================== */
-
-.college{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-font-size:20px;
-
-font-weight:600;
-
-margin-bottom:20px;
-
-color:white;
-
-}
-
-.description{
+font-size:18px;
 
 line-height:1.9;
 
-font-size:15px;
-
-color:#bfc7d7;
-
-margin-bottom:25px;
+color:#A7AEC5;
 
 }
 
-.highlight{
+.education-hero strong{
 
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-color:#4f8cff;
-
-font-weight:700;
-
-}
-
-/* ===========================
-   FOOTER
-=========================== */
-
-.timeline-footer{
-
-display:flex;
-
-justify-content:center;
-
-margin-top:80px;
-
-}
-
-.footer-card{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-padding:20px 40px;
-
-border-radius:999px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(79,140,255,.3);
-
-backdrop-filter:blur(20px);
+color:#4F8CFF;
 
 font-weight:600;
 
-color:#4f8cff;
+}
 
-animation:float 3s ease infinite;
+/* ==========================================
+   REVEAL
+========================================== */
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:1s;
 
 }
 
-@keyframes float{
+.reveal.active{
 
-0%{
+opacity:1;
+
 transform:translateY(0);
-}
-
-50%{
-transform:translateY(-8px);
-}
-
-100%{
-transform:translateY(0);
-}
 
 }
 
-/* ===========================
+/* ==========================================
+   TIMELINE
+========================================== */
+
+.education-timeline{
+
+    position:relative;
+
+    margin:100px 0;
+
+    padding:20px 0;
+
+}
+
+.education-timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    transform:translateX(-50%);
+
+    width:2px;
+
+    height:100%;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+/* ==========================================
+   TIMELINE ITEM
+========================================== */
+
+.timeline-item{
+
+    position:relative;
+
+    display:flex;
+
+    margin-bottom:90px;
+
+}
+
+.timeline-item.left{
+
+    justify-content:flex-start;
+
+}
+
+.timeline-item.right{
+
+    justify-content:flex-end;
+
+}
+
+/* ==========================================
+   TIMELINE DOT
+========================================== */
+
+.timeline-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:45px;
+
+    transform:translateX(-50%);
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#4F8CFF;
+
+    box-shadow:
+
+    0 0 20px rgba(79,140,255,.8);
+
+    z-index:5;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.timeline-card{
+
+    width:45%;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.03);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.35s;
+
+}
+
+.timeline-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#4F8CFF;
+
+    box-shadow:
+
+    0 0 35px rgba(79,140,255,.18);
+
+}
+
+/* ==========================================
+   TOP
+========================================== */
+
+.timeline-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:28px;
+
+}
+
+.year{
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(79,140,255,.12);
+
+    color:#4F8CFF;
+
+    font-size:12px;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+}
+
+.timeline-top h2{
+
+    font-family:"Space Grotesk";
+
+    font-size:42px;
+
+    color:#4F8CFF;
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.timeline-card h3{
+
+    font-family:"Space Grotesk";
+
+    font-size:30px;
+
+    margin-bottom:12px;
+
+}
+
+.timeline-card h4{
+
+    color:#4F8CFF;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.timeline-card p{
+
+    color:#A7AEC5;
+
+    line-height:1.8;
+
+    margin-bottom:28px;
+
+}
+
+/* ==========================================
+   TAGS
+========================================== */
+
+.tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.tags span{
+
+    padding:9px 16px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    font-size:12px;
+
+    transition:.3s;
+
+}
+
+.tags span:hover{
+
+    background:#4F8CFF;
+
+    border-color:#4F8CFF;
+
+    color:white;
+
+}
+
+/* ==========================================
+   STATS
+========================================== */
+
+.education-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+    margin-top:120px;
+
+    margin-bottom:120px;
+
+}
+
+.stat-box{
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    transition:.35s;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#4F8CFF;
+
+}
+
+.stat-box h2{
+
+    font-size:58px;
+
+    font-family:"Space Grotesk";
+
+    color:#4F8CFF;
+
+    margin-bottom:12px;
+
+}
+
+.stat-box p{
+
+    color:#A7AEC5;
+
+    text-transform:uppercase;
+
+    font-size:13px;
+
+    letter-spacing:.15em;
+
+}
+/* ==========================================
+   CORE SUBJECTS
+========================================== */
+
+.subjects-section{
+
+    margin-top:80px;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.section-title h2{
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:48px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   SUBJECT SLIDER
+========================================== */
+
+.subjects-slider{
+
+    display:flex;
+
+    gap:28px;
+
+    overflow-x:auto;
+
+    scroll-behavior:smooth;
+
+    padding:10px 5px 25px;
+
+}
+
+.subjects-slider::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.subjects-slider{
+
+    -ms-overflow-style:none;
+
+    scrollbar-width:none;
+
+}
+
+/* ==========================================
+   SUBJECT CARD
+========================================== */
+
+.subject-card{
+
+    min-width:240px;
+
+    height:220px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:22px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.subject-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#4F8CFF;
+
+    box-shadow:
+
+    0 20px 40px rgba(79,140,255,.15);
+
+}
+
+.subject-icon{
+
+    color:#4F8CFF;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.subject-card h3{
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:22px;
+
+    text-align:center;
+
+}
+
+/* ==========================================
+   HOVER EFFECTS
+========================================== */
+
+.subject-card:hover .subject-icon{
+
+    transform:scale(1.15);
+
+    transition:.35s;
+
+}
+
+.subject-card:hover h3{
+
+    color:#4F8CFF;
+
+}
+
+/* ==========================================
    RESPONSIVE
-=========================== */
+========================================== */
 
-@media(max-width:900px){
+@media(max-width:992px){
 
-.timeline-line{
+.education-timeline::before{
 
-left:20px;
+left:25px;
 
 }
 
 .timeline-item{
 
-grid-template-columns:50px 1fr;
+justify-content:flex-start!important;
 
-gap:25px;
-
-margin-bottom:80px;
+padding-left:60px;
 
 }
 
-.timeline-node{
+.timeline-item::before{
 
-grid-column:1;
-
-}
-
-.timeline-left,
-.desktop-title{
-
-display:none;
+left:25px;
 
 }
 
-.timeline-right{
+.timeline-card{
 
-grid-column:2;
-
-}
-
-.mobile-title{
-
-display:block;
-
-margin-bottom:20px;
+width:100%;
 
 }
 
-.education-heading h2{
+.education-stats{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.education-hero h1{
+
+font-size:54px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.education-page{
+
+padding:100px 25px;
+
+}
+
+.education-hero h1{
 
 font-size:42px;
 
 }
 
-.footer-card{
+.education-hero p{
 
-padding:18px 24px;
-
-font-size:14px;
+font-size:16px;
 
 }
 
-}
+.education-stats{
 
-@media(max-width:600px){
-
-.education-section{
-
-padding:90px 25px;
+grid-template-columns:1fr;
 
 }
 
-.glass-card{
+.timeline-card{
 
-padding:25px;
-
-}
-
-.college{
-
-font-size:17px;
+padding:28px;
 
 }
 
-.description{
+.timeline-card h3{
 
-font-size:14px;
+font-size:24px;
 
 }
 
-.education-heading h2{
+.timeline-top h2{
 
 font-size:34px;
 
 }
 
-.footer-card{
+.section-title h2{
 
-flex-direction:column;
-
-text-align:center;
-
-border-radius:25px;
+font-size:36px;
 
 }
+
+.subject-card{
+
+min-width:210px;
+
+height:190px;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.education-hero h1{
+
+font-size:34px;
+
+}
+
+.timeline-card{
+
+padding:22px;
+
+}
+
+.subject-card{
+
+min-width:180px;
+
+height:170px;
+
+}
+
+.subject-card h3{
+
+font-size:18px;
+
+}
+
+}
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection{
+
+background:#4F8CFF;
+
+color:#fff;
 
 }

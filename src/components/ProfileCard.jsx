@@ -83,7 +83,7 @@ function ProfileCard() {
           <Info
             icon={<FaStar />}
             title="CGPA"
-            value="8.54"
+            value="8.74"
           />
 
         </div>

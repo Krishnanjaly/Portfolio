@@ -8,7 +8,8 @@ const links = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
+  { name: "Education", href: "#education" },
+  { name: "Achievements", href: "#achievements" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -37,9 +38,12 @@ function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 sm:px-8">
-        <a href="#home" className="text-2xl sm:text-3xl font-bold tracking-tight gradientText">
-          Krishnanjaly S
-        </a>
+        <a
+        href="#home"
+        className="text-2xl sm:text-3xl font-bold tracking-tight gradientText"
+      >
+        Krishnanjaly S
+      </a>
 
         <nav className="hidden lg:flex gap-8 text-sm font-medium">
           {links.map((item) => (
@@ -49,7 +53,9 @@ function Navbar() {
               className="relative group text-gray-300 hover:text-white transition"
             >
               {item.name}
+
               <span className="absolute left-0 -bottom-2 h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+
             </a>
           ))}
         </nav>
@@ -79,10 +85,15 @@ function Navbar() {
       >
         <div className="flex flex-col justify-center items-center h-full gap-8 text-xl">
           {links.map((item) => (
-            <a key={item.name} href={item.href} onClick={() => setOpen(false)} className="hover:text-blue-400 transition">
-              {item.name}
-            </a>
-          ))}
+          <a
+            key={item.name}
+            href={item.href}
+            onClick={() => setOpen(false)}
+            className="hover:text-blue-400 transition"
+          >
+            {item.name}
+          </a>
+        ))}
           <div className="flex gap-8 mt-2">
             <a href="https://github.com/Krishnanjaly" target="_blank" rel="noreferrer">
               <FaGithub size={26} />
