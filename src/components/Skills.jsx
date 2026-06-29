@@ -1,121 +1,205 @@
-import { motion } from "framer-motion";
-import { FaPython, FaJava, FaReact, FaNodeJs, FaGitAlt, FaDocker } from "react-icons/fa";
-import { SiJavascript, SiTypescript, SiExpress, SiMongodb, SiMysql, SiTailwindcss, SiNextdotjs, SiFastapi, SiTensorflow, SiPytorch, SiFirebase, SiGithub } from "react-icons/si";
+import React, { useEffect } from "react";
+import "./Skills.css";
+import {
+  Terminal,
+  Code,
+  Storage,
+  Web,
+  Dns,
+  Api,
+  Psychology,
+  Build,
+} from "@mui/icons-material";
 
-const skillCategories = [
+const programming = [
+  { icon: <Terminal />, name: "Python", percent: 95 },
+  { icon: <Code />, name: "Java", percent: 85 },
+  { icon: <Code />, name: "JavaScript", percent: 90 },
+  { icon: <Storage />, name: "SQL", percent: 85 },
+];
+
+const frontend = [
+  { icon: <Web />, name: "React", percent: 90 },
+  { icon: <Web />, name: "HTML5", percent: 95 },
+  { icon: <Web />, name: "CSS3", percent: 92 },
+  { icon: <Web />, name: "Tailwind CSS", percent: 95 },
+];
+
+const backend = [
+  { icon: <Dns />, name: "Node.js", percent: 88 },
+  { icon: <Api />, name: "Express.js", percent: 85 },
+  { icon: <Api />, name: "FastAPI", percent: 75 },
+];
+
+const database = [
+  { icon: <Storage />, name: "MongoDB", percent: 82 },
+  { icon: <Storage />, name: "MySQL", percent: 85 },
+];
+
+const ai = [
+  { icon: <Psychology />, name: "TensorFlow", percent: 78 },
+  { icon: <Psychology />, name: "PyTorch", percent: 80 },
+  { icon: <Psychology />, name: "OpenAI APIs", percent: 90 },
+];
+
+const tools = [
+  { icon: <Build />, name: "Git", percent: 95 },
+  { icon: <Build />, name: "GitHub", percent: 95 },
+  { icon: <Build />, name: "Docker", percent: 70 },
+];
+
+const categories = [
   {
-    title: "Programming Languages",
-    skills: [
-      { name: "Python", icon: <FaPython />, level: 95 },
-      { name: "Java", icon: <FaJava />, level: 90 },
-      { name: "JavaScript", icon: <SiJavascript />, level: 92 },
-      { name: "TypeScript", icon: <SiTypescript />, level: 85 },
-    ],
+    title: "Programming",
+    data: programming,
   },
   {
     title: "Frontend",
-    skills: [
-      { name: "React", icon: <FaReact />, level: 95 },
-      { name: "Next.js", icon: <SiNextdotjs />, level: 90 },
-      { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 95 },
-    ],
+    data: frontend,
   },
   {
     title: "Backend",
-    skills: [
-      { name: "Node.js", icon: <FaNodeJs />, level: 90 },
-      { name: "Express", icon: <SiExpress />, level: 88 },
-      { name: "FastAPI", icon: <SiFastapi />, level: 80 },
-      { name: "Firebase", icon: <SiFirebase />, level: 82 },
-    ],
+    data: backend,
   },
   {
     title: "Databases",
-    skills: [
-      { name: "MongoDB", icon: <SiMongodb />, level: 92 },
-      { name: "MySQL", icon: <SiMysql />, level: 90 },
-    ],
+    data: database,
   },
   {
     title: "Artificial Intelligence",
-    skills: [
-      { name: "TensorFlow", icon: <SiTensorflow />, level: 75 },
-      { name: "PyTorch", icon: <SiPytorch />, level: 72 },
-    ],
+    data: ai,
   },
   {
     title: "Tools",
-    skills: [
-      { name: "Git", icon: <FaGitAlt />, level: 94 },
-      { name: "GitHub", icon: <SiGithub />, level: 95 },
-      { name: "Docker", icon: <FaDocker />, level: 75 },
-    ],
+    data: tools,
   },
 ];
 
-function SkillBar({ level }) {
+const stats = [
+  {
+    value: "20+",
+    title: "Technologies",
+  },
+  {
+    value: "45+",
+    title: "Projects",
+  },
+  {
+    value: "10+",
+    title: "Certifications",
+  },
+  {
+    value: "3+",
+    title: "Years Learning",
+  },
+];
+
+const Skills = () => {
+  useEffect(() => {
+    const cards = document.querySelectorAll(".skill-card");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+
+            entry.target
+              .querySelectorAll(".progress-fill")
+              .forEach((bar) => {
+                bar.style.width = bar.dataset.percent + "%";
+              });
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/10">
-      <motion.div initial={{ width: 0 }} whileInView={{ width: `${level}%` }} viewport={{ once: true }} transition={{ duration: 1 }} className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
-    </div>
-  );
-}
+    <section className="skills-section">
 
-function Skills() {
-  return (
-    <section id="skills" className="section bg-transparent">
-      <div className="section-shell">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="section-heading">
-          <p className="section-eyebrow">My Skills</p>
-          <h2 className="section-title">
-            Technical <span className="gradientText">Expertise</span>
-          </h2>
-          <p className="section-subtitle">I enjoy building intelligent software using modern technologies, from full-stack development to AI and cloud-powered products.</p>
-        </motion.div>
+      <div className="skills-header">
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {skillCategories.map((category, index) => (
-            <motion.div key={category.title} initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: index * 0.08 }} className="card p-8">
-              <h3 className="mb-8 text-2xl font-semibold sm:text-3xl">{category.title}</h3>
-              <div className="space-y-8">
-                {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-4">
-                        <div className="text-2xl text-blue-400 sm:text-3xl">{skill.icon}</div>
-                        <h4 className="text-base font-semibold sm:text-lg">{skill.name}</h4>
-                      </div>
-                      <span className="font-semibold text-blue-400">{skill.level}%</span>
-                    </div>
-                    <SkillBar level={skill.level} />
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <span className="section-tag">
+          EXPERTISE STACK
+        </span>
 
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="mt-20 grid gap-6 md:grid-cols-4">
-          <div className="glass rounded-[24px] p-8 text-center">
-            <h1 className="text-4xl font-bold text-blue-400 sm:text-5xl">20+</h1>
-            <p className="mt-3 text-gray-400">Technologies</p>
-          </div>
-          <div className="glass rounded-[24px] p-8 text-center">
-            <h1 className="text-4xl font-bold text-blue-400 sm:text-5xl">15+</h1>
-            <p className="mt-3 text-gray-400">Projects</p>
-          </div>
-          <div className="glass rounded-[24px] p-8 text-center">
-            <h1 className="text-4xl font-bold text-blue-400 sm:text-5xl">10+</h1>
-            <p className="mt-3 text-gray-400">Certifications</p>
-          </div>
-          <div className="glass rounded-[24px] p-8 text-center">
-            <h1 className="text-4xl font-bold text-blue-400 sm:text-5xl">3+</h1>
-            <p className="mt-3 text-gray-400">Years Learning</p>
-          </div>
-        </motion.div>
+        <h1>
+          The Architecture of
+          <span> Intelligence.</span>
+        </h1>
+
       </div>
+
+      <div className="skills-grid">
+
+        {categories.map((category) => (
+          <div className="skill-card" key={category.title}>
+
+            <h2>{category.title}</h2>
+
+            <div className="skill-list">
+
+              {category.data.map((skill) => (
+                <div
+                  className="skill-item"
+                  key={skill.name}
+                >
+                  <div className="skill-info">
+
+                    <div className="skill-left">
+                      {skill.icon}
+                      <span>{skill.name}</span>
+                    </div>
+
+                    <span className="skill-percent">
+                      {skill.percent}%
+                    </span>
+
+                  </div>
+
+                  <div className="progress-track">
+
+                    <div
+                      className="progress-fill"
+                      data-percent={skill.percent}
+                    ></div>
+
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+        ))}
+
+      </div>
+
+      <div className="stats-grid">
+
+        {stats.map((item) => (
+          <div className="stat-card" key={item.title}>
+
+            <h2>{item.value}</h2>
+
+            <p>{item.title}</p>
+
+          </div>
+        ))}
+
+      </div>
+
     </section>
   );
-}
+};
 
 export default Skills;

@@ -1,113 +1,776 @@
-import { motion } from "framer-motion";
-import { FaEnvelope, FaPhoneAlt, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import "./Contact.css";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { useRef } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Handshake,
+  Circle,
+  Download,
+  Send,
+  ArrowRight,
+} from "lucide-react";
 
-function Contact() {
+export default function Contact() {
   const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+const [loading, setLoading] = useState(false);
 
-    emailjs
-      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form.current, "YOUR_PUBLIC_KEY")
-      .then(() => {
-        alert("Message sent successfully!");
-      })
-      .catch(() => {
-        alert("Something went wrong.");
-      });
-  };
+const sendEmail = (e) => {
+  e.preventDefault();
+
+  setLoading(true);
+
+  emailjs
+    .sendForm(
+      "service_l26gxrp",
+      "template_3tmik4b",
+      form.current,
+      "zNHHyOgTGPK3hpsZc"
+    )
+    .then(
+      () => {
+        alert("✅ Message sent successfully!");
+
+        form.current.reset();
+
+        setLoading(false);
+      },
+      (error) => {
+        console.log(error);
+
+        alert("❌ Failed to send message.");
+
+        setLoading(false);
+      }
+    );
+};
+
+  useEffect(() => {
+
+    const observer = new IntersectionObserver(
+
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+          }
+
+        });
+
+      },
+
+      {
+        threshold: 0.1,
+      }
+
+    );
+
+    document
+
+      .querySelectorAll(".fade-up")
+
+      .forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+
+  }, []);
 
   return (
-    <section id="contact" className="section relative overflow-hidden bg-transparent">
-      <div className="absolute left-0 top-0 h-96 w-96 rounded-full bg-blue-600/20 blur-[180px]" />
-      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-[180px]" />
 
-      <div className="section-shell relative z-10">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.7 }} viewport={{ once: true }} className="section-heading">
-          <p className="section-eyebrow">Contact</p>
-          <h2 className="section-title">
-            Let&apos;s Build Something <span className="gradientText">Amazing</span>
+    <div className="contact-page">
+
+      {/* Noise Overlay */}
+
+      <div className="noise-overlay"></div>
+
+      {/* ===========================
+            NAVBAR
+      =========================== */}
+
+      <nav className="navbar">
+
+        <div className="nav-container">
+
+          <h2 className="logo">
+
+            Krishnanjaly S
+
           </h2>
-          <p className="section-subtitle">I&apos;m always happy to talk about internships, collaborations, research work, and exciting new ideas.</p>
-        </motion.div>
 
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-          <motion.div initial={{ x: -80, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-            <h3 className="mb-8 text-3xl font-bold sm:text-4xl">Get In Touch</h3>
-            <p className="mb-10 leading-8 text-gray-400">Whether you have an opportunity, research collaboration, internship, freelance work, or simply want to say hello, I&apos;d love to hear from you.</p>
+          <div className="nav-links">
 
-            <div className="space-y-5">
-              <div className="glass flex items-center gap-5 rounded-[24px] p-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-2xl"><FaEnvelope /></div>
-                <div>
-                  <h4 className="text-lg font-semibold">Email</h4>
-                  <p className="text-gray-400">krishnanjalys98@gmail.com</p>
-                </div>
-              </div>
+            <a href="/">Home</a>
 
-              <div className="glass flex items-center gap-5 rounded-[24px] p-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-2xl"><FaPhoneAlt /></div>
-                <div>
-                  <h4 className="text-lg font-semibold">Phone</h4>
-                  <p className="text-gray-400">+91 8075584570</p>
-                </div>
-              </div>
+            <a href="/about">About</a>
 
-              <div className="glass flex items-center gap-5 rounded-[24px] p-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-2xl"><FaMapMarkerAlt /></div>
-                <div>
-                  <h4 className="text-lg font-semibold">Location</h4>
-                  <p className="text-gray-400">Kerala, India</p>
-                </div>
-              </div>
-            </div>
+            <a href="/skills">Skills</a>
 
-            <div className="mt-8 flex gap-4">
-              <a href="https://github.com/Krishnanjaly" target="_blank" rel="noreferrer" className="glass flex h-14 w-14 items-center justify-center rounded-full text-2xl transition hover:bg-blue-600">
-                <FaGithub />
-              </a>
-              <a href="https://linkedin.com/in/krishnanjaly-s-70734a291" target="_blank" rel="noreferrer" className="glass flex h-14 w-14 items-center justify-center rounded-full text-2xl transition hover:bg-blue-600">
-                <FaLinkedin />
-              </a>
-            </div>
-          </motion.div>
+            <a href="/projects">Projects</a>
 
-          <motion.div initial={{ x: 80, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-            <div className="glass rounded-[32px] p-8 sm:p-10">
-              <h3 className="mb-8 text-3xl font-semibold">Send Me a Message</h3>
-              <form ref={form} onSubmit={sendEmail} className="space-y-6">
-                <div>
-                  <label className="mb-3 block text-gray-300">Full Name</label>
-                  <input name="user_name" type="text" placeholder="Enter your name" required className="w-full rounded-2xl border border-white/10 bg-[#111] px-5 py-4 outline-none transition focus:border-blue-500" />
-                </div>
+            <a
+              href="/contact"
+              className="active"
+            >
+              Contact
+            </a>
 
-                <div>
-                  <label className="mb-3 block text-gray-300">Email Address</label>
-                  <input name="user_email" type="email" placeholder="example@gmail.com" required className="w-full rounded-2xl border border-white/10 bg-[#111] px-5 py-4 outline-none transition focus:border-blue-500" />
-                </div>
+          </div>
 
-                <div>
-                  <label className="mb-3 block text-gray-300">Subject</label>
-                  <input name="subject" type="text" placeholder="Project / Internship / Collaboration" className="w-full rounded-2xl border border-white/10 bg-[#111] px-5 py-4 outline-none transition focus:border-blue-500" />
-                </div>
+          <a
+  href="/resume/Krishnanjaly_Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="resume-btn"
+>
+  Resume
+</a>
 
-                <div>
-                  <label className="mb-3 block text-gray-300">Message</label>
-                  <textarea name="message" rows="6" placeholder="Write your message..." required className="w-full resize-none rounded-2xl border border-white/10 bg-[#111] px-5 py-4 outline-none transition focus:border-blue-500" />
-                </div>
-
-                <button type="submit" className="flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 px-5 py-4 font-semibold shadow-lg shadow-blue-500/30 transition hover:bg-blue-700 hover:scale-[1.01]">
-                  <FaPaperPlane /> Send Message
-                </button>
-              </form>
-            </div>
-          </motion.div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-export default Contact;
+      </nav>
+
+
+
+
+
+      <main className="contact-main">
+
+        {/* ===========================
+              HERO
+        =========================== */}
+
+        <section className="hero fade-up">
+
+          <h1>
+
+            Let's Build Something
+
+            <br />
+
+            <span>Amazing Together</span>
+
+          </h1>
+
+          <p>
+
+            Have a project in mind or simply want
+            to connect? I'm always open to
+            discussing AI, Full Stack Development,
+            Mobile Applications, collaborations and
+            exciting opportunities.
+
+          </p>
+
+        </section>
+
+
+
+
+
+
+
+        {/* ===========================
+            QUICK INFO
+        =========================== */}
+
+        <section className="quick-info fade-up">
+
+          <div className="info-card">
+
+            <div className="icon-box">
+
+              <Clock size={28} />
+
+            </div>
+
+            <div>
+
+              <small>
+
+                RESPONSE TIME
+
+              </small>
+
+              <h3>
+
+                {"<"} 24 Hours
+
+              </h3>
+
+            </div>
+
+          </div>
+
+
+
+
+
+          <div className="info-card">
+
+            <div className="icon-box">
+
+              <Handshake size={28} />
+
+            </div>
+
+            <div>
+
+              <small>
+
+                OPEN TO
+
+              </small>
+
+              <h3>
+
+                Collaborations
+
+              </h3>
+
+            </div>
+
+          </div>
+
+
+
+
+
+          <div className="info-card">
+
+            <div className="icon-box green">
+
+              <Circle
+                size={18}
+                fill="currentColor"
+              />
+
+            </div>
+
+            <div>
+
+              <small>
+
+                STATUS
+
+              </small>
+
+              <h3>
+
+                Available
+
+              </h3>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+
+
+        {/* ===========================
+            CONTACT GRID
+        =========================== */}
+
+        <section className="contact-grid">
+
+                    {/* ==========================
+                LEFT COLUMN
+          ========================== */}
+
+          <div className="contact-left fade-up">
+
+            <h2>
+
+              Get In Touch
+
+            </h2>
+
+            {/* Email */}
+
+            <a
+              href="mailto:krishnanjalys98@gmail.com"
+              className="contact-card"
+            >
+
+              <div className="contact-icon">
+
+                <Mail size={24} />
+
+              </div>
+
+              <div>
+
+                <small>
+
+                  Email Me
+
+                </small>
+
+                <h4>
+
+                  krishnanjalys98@gmail.com
+
+                </h4>
+
+              </div>
+
+            </a>
+
+
+
+
+
+            {/* Phone */}
+
+            <a
+              href="tel:+918075584570"
+              className="contact-card"
+            >
+
+              <div className="contact-icon">
+
+                <Phone size={24} />
+
+              </div>
+
+              <div>
+
+                <small>
+
+                  Call Me
+
+                </small>
+
+                <h4>
+
+                  +91 8075584570
+
+                </h4>
+
+              </div>
+
+            </a>
+
+
+
+
+
+            {/* Location */}
+
+            <div className="contact-card">
+
+              <div className="contact-icon">
+
+                <MapPin size={24} />
+
+              </div>
+
+              <div>
+
+                <small>
+
+                  Location
+
+                </small>
+
+                <h4>
+
+                  Kerala, India
+
+                </h4>
+
+              </div>
+
+            </div>
+
+
+
+
+
+            {/* Social */}
+
+            <div className="social-grid">
+
+              <a
+                href="https://www.linkedin.com/in/krishnanjaly-s-70734a291/"
+                target="_blank"
+                rel="noreferrer"
+                className="social-card"
+              >
+
+                <ArrowRight size={30} />
+
+                <span>
+
+                  LinkedIn
+
+                </span>
+
+              </a>
+
+
+
+
+
+              <a
+                href="https://github.com/Krishnanjaly"
+                target="_blank"
+                rel="noreferrer"
+                className="social-card"
+              >
+
+                <ArrowRight size={30} />
+
+                <span>
+
+                  GitHub
+
+                </span>
+
+              </a>
+
+            </div>
+
+
+
+
+
+            {/* Resume */}
+
+            <a
+            href="/resume/Krishnanjaly_Resume.pdf"
+            download
+            className="resume-download"
+          >
+            Download Resume
+          </a>
+
+
+
+
+
+            {/* Status */}
+
+            <div className="availability">
+
+              <span className="pulse-dot"></span>
+
+              <p>
+
+                Available for Freelance &
+                Full-Time Opportunities
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+
+
+          {/* ==========================
+               RIGHT COLUMN
+          ========================== */}
+
+          <div className="contact-right fade-up">
+
+            <div className="glass-form">
+
+              <h2>
+
+                Send Me A Message
+
+              </h2>
+
+              <form ref={form} onSubmit={sendEmail}>
+
+                <div className="form-row">
+
+                <div className="input-group">
+
+                  <label htmlFor="name">
+                    Your Name
+                  </label>
+
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    placeholder="John Doe"
+                    autoComplete="name"
+                    required
+                  />
+
+                </div>
+
+                <div className="input-group">
+
+                  <label htmlFor="email">
+                    Your Email
+                  </label>
+
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="john@example.com"
+                    autoComplete="email"
+                    required
+                  />
+
+                </div>
+
+              </div>
+
+              <div className="input-group">
+
+                <label htmlFor="subject">
+                  Subject
+                </label>
+
+                <input
+                  id="subject"
+                  type="text"
+                  name="subject"
+                  placeholder="Project Inquiry"
+                  required
+                />
+
+              </div>
+
+              <div className="input-group">
+
+                <label htmlFor="message">
+                  Message
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="7"
+                  placeholder="Tell me about your project..."
+                  required
+                />
+
+              </div>
+
+                <button
+                    type="submit"
+                    className="send-btn"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Send Message"}
+
+                    <Send size={20} />
+                  </button>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </section>
+
+                {/* ==========================
+              WORLD SECTION
+        ========================== */}
+
+        <section className="world-section fade-up">
+
+          <div className="glass-world">
+
+            <div className="world-content">
+
+              <h2>
+
+                Let's Connect Worldwide
+
+              </h2>
+
+              <p>
+
+                Currently based in Kerala, India,
+                but always excited to collaborate
+                with clients, startups and teams
+                around the world.
+
+              </p>
+
+            </div>
+
+            <div className="world-map">
+
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR0byIPG_Y8dNCaRRDyXYU1Mr-DBF6fA5Y1fkGT4D_cSb9ZhfR_ALe2C4HGDNpWeXoudhkHaX95OWOQfzpzVnQcuOJNhazF0hPr3dXGUGmKAKl2efpQW3IntXYk-17gg0yRhBY55demlyKxsWbuuJJibsHSuXgKMCtBtf5fGIJJiB1blO9OFCYODU1lYFr533rwFIKofj7bPYNkh89KOcLpNZBPFlW5oOmswyaHCioWat-TshnTMxHaZ6t5jfXbnm3klN_NlXnZITT"
+                alt="World Map"
+              />
+
+              <div className="map-pulse"></div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+
+
+
+
+        {/* ==========================
+                QUOTE
+        ========================== */}
+
+        <section className="quote-section fade-up">
+
+          <h2>
+
+            "Great software begins with
+
+            <span>
+
+              {" "}
+              great conversations
+
+            </span>
+
+            ."
+
+          </h2>
+
+        </section>
+
+
+
+
+
+
+
+        {/* ==========================
+               CTA
+        ========================== */}
+
+        <section className="cta-banner fade-up">
+
+          <div className="glass-cta">
+
+            <h2>
+
+              Ready to Build Something Together?
+
+            </h2>
+
+            <div className="cta-buttons">
+
+              <button className="hire-btn">
+
+                Hire Me
+
+              </button>
+
+              <button className="project-btn">
+
+                View Projects
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+
+
+
+
+
+
+      {/* ==========================
+              FOOTER
+      ========================== */}
+
+      <footer className="footer">
+
+        <div className="footer-container">
+
+          <div className="footer-logo">
+
+            <h2>
+
+              Krishnanjaly S
+
+            </h2>
+
+          </div>
+
+          <div className="footer-links">
+
+            <a
+              href="https://www.linkedin.com/in/krishnanjaly-s-70734a291/"
+              target="_blank"
+              rel="noreferrer"
+            >
+
+              LinkedIn
+
+            </a>
+
+            <a
+              href="https://github.com/Krishnanjaly"
+              target="_blank"
+              rel="noreferrer"
+            >
+
+              GitHub
+
+            </a>
+
+            <a
+              href="mailto:krishnanjalys98@gmail.com"
+            >
+
+              Email
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <div className="footer-bottom">
+
+          © {new Date().getFullYear()} Krishnanjaly S.
+          All rights reserved.
+
+        </div>
+
+      </footer>
+
+    </div>
+
+  );
+
+}

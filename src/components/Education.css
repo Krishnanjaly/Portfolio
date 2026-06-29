@@ -1,0 +1,392 @@
+/* ===========================
+   EDUCATION SECTION
+=========================== */
+
+.education-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 8%;
+  background: #050816;
+  overflow: hidden;
+  color: white;
+}
+
+/* ===========================
+   HEADING
+=========================== */
+
+.education-heading {
+  text-align: center;
+  margin-bottom: 120px;
+}
+
+.education-subtitle {
+  display: inline-block;
+  color: #4f8cff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.education-heading h2 {
+  font-size: 64px;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* ===========================
+   TIMELINE
+=========================== */
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+      to bottom,
+      #4f8cff,
+      #82a8ff,
+      transparent
+  );
+
+  box-shadow: 0 0 20px #4f8cff;
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 120px;
+}
+
+.timeline-node {
+  width: 24px;
+  height: 24px;
+  background: #4f8cff;
+  border-radius: 50%;
+  margin: auto;
+  border: 5px solid #050816;
+  z-index: 20;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+0%{
+box-shadow:0 0 0 0 rgba(79,140,255,.8);
+transform:scale(.95);
+}
+
+70%{
+box-shadow:0 0 0 15px rgba(79,140,255,0);
+transform:scale(1);
+}
+
+100%{
+box-shadow:0 0 0 0 rgba(79,140,255,0);
+transform:scale(.95);
+}
+
+}
+
+/* ===========================
+   TEXT
+=========================== */
+
+.timeline-left h3,
+.desktop-title h3,
+.mobile-title h3{
+
+font-size:32px;
+font-weight:700;
+
+}
+
+.timeline-left span,
+.desktop-title span,
+.mobile-title span{
+
+display:block;
+margin-top:10px;
+letter-spacing:3px;
+color:#4f8cff;
+font-size:13px;
+text-transform:uppercase;
+
+}
+
+.timeline-left{
+
+text-align:right;
+
+}
+
+.desktop-title{
+
+text-align:left;
+
+}
+
+.mobile-title{
+
+display:none;
+
+}
+
+/* ===========================
+   GLASS CARD
+=========================== */
+
+.glass-card{
+
+background:rgba(255,255,255,.04);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:30px;
+
+padding:35px;
+
+transition:.45s;
+
+}
+
+.glass-card:hover{
+
+transform:translateY(-8px);
+
+border-color:#4f8cff;
+
+box-shadow:
+0 20px 40px rgba(0,0,0,.4),
+0 0 20px rgba(79,140,255,.25);
+
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.college{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-size:20px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+color:white;
+
+}
+
+.description{
+
+line-height:1.9;
+
+font-size:15px;
+
+color:#bfc7d7;
+
+margin-bottom:25px;
+
+}
+
+.highlight{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+color:#4f8cff;
+
+font-weight:700;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.timeline-footer{
+
+display:flex;
+
+justify-content:center;
+
+margin-top:80px;
+
+}
+
+.footer-card{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:20px 40px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(79,140,255,.3);
+
+backdrop-filter:blur(20px);
+
+font-weight:600;
+
+color:#4f8cff;
+
+animation:float 3s ease infinite;
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+.timeline-line{
+
+left:20px;
+
+}
+
+.timeline-item{
+
+grid-template-columns:50px 1fr;
+
+gap:25px;
+
+margin-bottom:80px;
+
+}
+
+.timeline-node{
+
+grid-column:1;
+
+}
+
+.timeline-left,
+.desktop-title{
+
+display:none;
+
+}
+
+.timeline-right{
+
+grid-column:2;
+
+}
+
+.mobile-title{
+
+display:block;
+
+margin-bottom:20px;
+
+}
+
+.education-heading h2{
+
+font-size:42px;
+
+}
+
+.footer-card{
+
+padding:18px 24px;
+
+font-size:14px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.education-section{
+
+padding:90px 25px;
+
+}
+
+.glass-card{
+
+padding:25px;
+
+}
+
+.college{
+
+font-size:17px;
+
+}
+
+.description{
+
+font-size:14px;
+
+}
+
+.education-heading h2{
+
+font-size:34px;
+
+}
+
+.footer-card{
+
+flex-direction:column;
+
+text-align:center;
+
+border-radius:25px;
+
+}
+
+}

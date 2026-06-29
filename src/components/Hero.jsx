@@ -68,9 +68,7 @@ function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="/resume.pdf" className="primaryBtn inline-flex items-center justify-center px-7 py-3 font-semibold">
-              Download Resume
-            </a>
+            
             <a href="#projects" className="secondaryBtn btn inline-flex items-center justify-center px-7 py-3 font-semibold">
               View Projects
             </a>

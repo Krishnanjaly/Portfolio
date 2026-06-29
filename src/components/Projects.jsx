@@ -1,53 +1,824 @@
-import { motion } from "framer-motion";
-import ProjectCard from "./ProjectCard";
-import projects from "../data/projectsData";
-import { FaArrowRight } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import "./Projects.css";
 
-function Projects() {
-  const featuredProjects = projects.filter((project) => project.featured === true);
-  const otherProjects = projects.filter((project) => project.featured === false);
+import {
+  ExternalLink,
+  CheckCircle,
+  ArrowRight,
+} from "lucide-react";
+
+import sheild from "../assets/sheild.png";
+import platecraft from "../assets/platecraft.jpg";
+import offside from "../assets/offside.jpg";
+import water from "../assets/water.jpeg";
+
+const projectData = [
+  {
+    id: 1,
+    category: "AI",
+    title: "SHEILD Safety",
+    image: sheild,
+    badge: "AI MOBILE APP",
+
+    description:
+      "AI-powered personal safety application featuring voice SOS, motion detection, QR emergency support, trusted contacts, live GPS sharing and automatic cloud evidence recording.",
+
+    technologies: [
+      "React Native",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Cloudinary",
+      "Twilio",
+    ],
+
+    features: [
+      "Voice Activation",
+      "Motion Analysis",
+      "SOS Automation",
+      "24/7 Monitoring",
+    ],
+  },
+
+  {
+    id: 2,
+    category: "Web",
+    title: "PlateCraft",
+    image: platecraft,
+    badge: "MERN WEB",
+
+    description:
+      "Recipe sharing platform built with the MERN Stack featuring authentication, recipe management, favorites and responsive UI.",
+
+    technologies: [
+      "React",
+      "Express",
+      "MongoDB",
+      "Node.js",
+    ],
+
+    features: [
+      "Authentication",
+      "Favorites",
+      "Recipe Search",
+      "Responsive",
+    ],
+  },
+
+  {
+    id: 3,
+    category: "Web",
+    title: "Offside Deal",
+    image: offside,
+    badge: "E-COMMERCE",
+
+    description:
+      "Football merchandise shopping platform with secure authentication, shopping cart, wishlist and order management.",
+
+    technologies: [
+      "React",
+      "Express",
+      "MongoDB",
+      "Node.js",
+    ],
+
+    features: [
+      "Shopping Cart",
+      "Wishlist",
+      "Orders",
+      "Authentication",
+    ],
+  },
+
+  {
+    id: 4,
+    category: "Hackathon",
+    title: "Water Footprint Calculator",
+    image: water,
+    badge: "HACKATHON",
+
+    description:
+      "Interactive Smart India Hackathon project that estimates household water consumption through questionnaires.",
+
+    technologies: [
+      "HTML",
+      "CSS",
+    ],
+
+    features: [
+      "Water Analysis",
+      "Interactive UI",
+      "Calculator",
+      "Awareness",
+    ],
+  },
+];
+
+export default function Projects() {
+
+  const [activeFilter, setActiveFilter] =
+    useState("All");
+
+  const [scrollProgress, setScrollProgress] =
+    useState(0);
+
+  useEffect(() => {
+
+    const handleScroll = () => {
+
+      const winScroll =
+        document.documentElement.scrollTop;
+
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+      setScrollProgress(
+        (winScroll / height) * 100
+      );
+    };
+
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+
+  }, []);
+
+  const filters = [
+    "All",
+    "AI",
+    "Web",
+    "Hackathon",
+  ];
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? projectData
+      : projectData.filter(
+          (project) =>
+            project.category === activeFilter
+        );
 
   return (
-    <section id="projects" className="section bg-transparent">
-      <div className="section-shell">
-        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }} className="section-heading">
-          <p className="section-eyebrow">My Work</p>
-          <h2 className="section-title">
-            Featured <span className="gradientText">Projects</span>
-          </h2>
-          <p className="section-subtitle">A selection of products and applications that reflect my work in AI, full-stack development, and thoughtful product design.</p>
-        </motion.div>
 
-        <div className="grid gap-10 lg:grid-cols-2">
-          {featuredProjects.map((project, index) => (
-            <motion.div key={project.id} initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: index * 0.15 }} viewport={{ once: true }}>
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
+    <div className="projects-page">
+
+      {/* NOISE */}
+
+      <div className="noise-overlay"></div>
+
+      {/* SCROLL BAR */}
+
+      <div
+        className="scroll-progress"
+        style={{
+          width: `${scrollProgress}%`,
+        }}
+      ></div>
+
+      {/* HERO */}
+
+      <section className="hero-section">
+
+        <div className="grid-background"></div>
+
+        <div className="hero-content">
+
+          <h1>
+
+            Featured
+
+            <span> Projects</span>
+
+          </h1>
+
+          <p>
+
+            A collection of projects that combine
+            Artificial Intelligence, Full Stack
+            Development and Mobile Applications to
+            solve real-world problems.
+
+          </p>
+
+          <div className="filters">
+
+            {filters.map((filter) => (
+
+              <button
+
+                key={filter}
+
+                onClick={() =>
+                  setActiveFilter(filter)
+                }
+
+                className={
+                  activeFilter === filter
+                    ? "filter active"
+                    : "filter"
+                }
+
+              >
+
+                {filter}
+
+              </button>
+
+            ))}
+
+          </div>
+
         </div>
 
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} className="my-20 h-px w-full bg-white/10" />
+      </section>
 
-        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="mb-12">
-          <h2 className="text-3xl font-bold sm:text-4xl">Other Projects</h2>
-        </motion.div>
+      {/* PROJECTS */}
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {otherProjects.map((project, index) => (
-            <motion.div key={project.id} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: index * 0.12 }} viewport={{ once: true }}>
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </div>
+      <main className="projects-container">
 
-        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="mt-20 text-center">
-          <a href="https://github.com/Krishnanjaly" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 rounded-full bg-blue-600 px-7 py-3.5 font-semibold shadow-lg shadow-blue-600/30 transition hover:bg-blue-700">
-            View More Projects <FaArrowRight />
+              {/* ==========================
+              SHEILD PROJECT
+      ========================== */}
+
+      {filteredProjects
+        .filter((project) => project.id === 1)
+        .map((project) => (
+          <section
+            key={project.id}
+            className="project-section left-layout"
+          >
+            {/* IMAGE SIDE */}
+
+            <div className="project-image-wrapper">
+
+              <div className="blur-circle top-left"></div>
+
+              <div className="glass-card border-beam image-card">
+
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project-image"
+                />
+
+              </div>
+
+              {/* Floating Metric Card */}
+
+              <div className="metric-card">
+
+                <div className="metric">
+
+                  <p>TECH STACK</p>
+
+                  <h3>06</h3>
+
+                </div>
+
+                <div className="metric">
+
+                  <p>DURATION</p>
+
+                  <h3>3M</h3>
+
+                </div>
+
+                <div className="metric">
+
+                  <p>LINES</p>
+
+                  <h3>12K</h3>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* CONTENT */}
+
+            <div className="project-content">
+
+              <span className="project-tag">
+
+                {project.badge}
+
+              </span>
+
+              <h2>
+
+                {project.title}
+
+              </h2>
+
+              <p className="project-description">
+
+                {project.description}
+
+              </p>
+
+              {/* Technologies */}
+
+              <div className="tech-stack">
+
+                {project.technologies.map((tech) => (
+
+                  <span
+                    key={tech}
+                    className="tech-pill"
+                  >
+
+                    {tech}
+
+                  </span>
+
+                ))}
+
+              </div>
+
+              {/* Features */}
+
+              <div className="features-grid">
+
+                {project.features.map((feature) => (
+
+                  <div
+                    key={feature}
+                    className="feature-item"
+                  >
+
+                    <CheckCircle
+                      size={18}
+                      className="feature-icon"
+                    />
+
+                    <span>{feature}</span>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+              {/* Buttons */}
+
+              <div className="project-buttons">
+
+                <button className="primary-btn">
+
+                  Live Demo
+
+                  <ExternalLink size={18} />
+
+                </button>
+
+                <button className="secondary-btn">
+
+                  GitHub
+
+                  <ArrowRight size={18} />
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </section>
+        ))}
+
+              {/* ==========================
+              PLATECRAFT
+      ========================== */}
+
+      {filteredProjects
+        .filter((project) => project.id === 2)
+        .map((project) => (
+          <section
+            key={project.id}
+            className="project-section right-layout"
+          >
+            {/* CONTENT */}
+
+            <div className="project-content">
+
+              <span className="project-tag">
+                {project.badge}
+              </span>
+
+              <h2>{project.title}</h2>
+
+              <p className="project-description">
+                {project.description}
+              </p>
+
+              {/* Technologies */}
+
+              <div className="tech-stack">
+
+                {project.technologies.map((tech) => (
+
+                  <span
+                    key={tech}
+                    className="tech-pill"
+                  >
+                    {tech}
+                  </span>
+
+                ))}
+
+              </div>
+
+              {/* Features */}
+
+              <div className="features-grid">
+
+                {project.features.map((feature) => (
+
+                  <div
+                    key={feature}
+                    className="feature-item"
+                  >
+
+                    <CheckCircle
+                      size={18}
+                      className="feature-icon"
+                    />
+
+                    <span>{feature}</span>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+              {/* Buttons */}
+
+              <div className="project-buttons">
+
+                <button className="primary-btn">
+
+                  Live Demo
+
+                  <ExternalLink size={18} />
+
+                </button>
+
+                <button className="secondary-btn">
+
+                  GitHub
+
+                  <ArrowRight size={18} />
+
+                </button>
+
+              </div>
+
+            </div>
+
+            {/* IMAGE */}
+
+            <div className="project-image-wrapper">
+
+              <div className="blur-circle bottom-right"></div>
+
+              <div className="glass-card border-beam image-card">
+
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project-image"
+                />
+
+              </div>
+
+              {/* Floating Card */}
+
+              <div className="metric-card left-card">
+
+                <div className="metric">
+
+                  <p>TYPE</p>
+
+                  <h3>MERN</h3>
+
+                </div>
+
+                <div className="metric">
+
+                  <p>STATUS</p>
+
+                  <h3>LIVE</h3>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+        ))}
+
+              {/* ==========================
+              OFFSIDE DEAL
+      ========================== */}
+
+      {filteredProjects
+        .filter((project) => project.id === 3)
+        .map((project) => (
+          <section
+            key={project.id}
+            className="project-section left-layout"
+          >
+
+            {/* IMAGE */}
+
+            <div className="project-image-wrapper">
+
+              <div className="blur-circle top-left"></div>
+
+              <div className="glass-card border-beam image-card">
+
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project-image"
+                />
+
+              </div>
+
+            </div>
+
+            {/* CONTENT */}
+
+            <div className="project-content">
+
+              <span className="project-tag">
+
+                {project.badge}
+
+              </span>
+
+              <h2>
+
+                {project.title}
+
+              </h2>
+
+              <p className="project-description">
+
+                {project.description}
+
+              </p>
+
+              <div className="tech-stack">
+
+                {project.technologies.map((tech) => (
+
+                  <span
+                    key={tech}
+                    className="tech-pill"
+                  >
+
+                    {tech}
+
+                  </span>
+
+                ))}
+
+              </div>
+
+              <div className="features-grid">
+
+                {project.features.map((feature) => (
+
+                  <div
+                    key={feature}
+                    className="feature-item"
+                  >
+
+                    <CheckCircle
+                      size={18}
+                      className="feature-icon"
+                    />
+
+                    <span>{feature}</span>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+              <div className="project-buttons">
+
+                <button className="primary-btn">
+
+                  Live Demo
+
+                  <ExternalLink size={18} />
+
+                </button>
+
+                <button className="secondary-btn">
+
+                  GitHub
+
+                  <ArrowRight size={18} />
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </section>
+        ))}
+
+
+
+
+
+
+      {/* ==========================
+      WATER FOOTPRINT CALCULATOR
+      ========================== */}
+
+      {filteredProjects
+        .filter((project) => project.id === 4)
+        .map((project) => (
+          <section
+            key={project.id}
+            className="project-section right-layout"
+          >
+
+            {/* CONTENT */}
+
+            <div className="project-content">
+
+              <span className="project-tag">
+
+                {project.badge}
+
+              </span>
+
+              <h2>
+
+                {project.title}
+
+              </h2>
+
+              <p className="project-description">
+
+                {project.description}
+
+              </p>
+
+              <div className="tech-stack">
+
+                {project.technologies.map((tech) => (
+
+                  <span
+                    key={tech}
+                    className="tech-pill"
+                  >
+
+                    {tech}
+
+                  </span>
+
+                ))}
+
+              </div>
+
+              <div className="features-grid">
+
+                {project.features.map((feature) => (
+
+                  <div
+                    key={feature}
+                    className="feature-item"
+                  >
+
+                    <CheckCircle
+                      size={18}
+                      className="feature-icon"
+                    />
+
+                    <span>{feature}</span>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+              <div className="project-buttons">
+
+                <button className="primary-btn">
+
+                  Live Demo
+
+                  <ExternalLink size={18} />
+
+                </button>
+
+                <button className="secondary-btn">
+
+                  GitHub
+
+                  <ArrowRight size={18} />
+
+                </button>
+
+              </div>
+
+            </div>
+
+            {/* IMAGE */}
+
+            <div className="project-image-wrapper">
+
+              <div className="blur-circle bottom-right"></div>
+
+              <div className="glass-card border-beam image-card">
+
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project-image"
+                />
+
+              </div>
+
+            </div>
+
+          </section>
+        ))}
+
+    </main>
+
+
+
+
+
+
+    {/* ==========================
+            CTA SECTION
+    ========================== */}
+
+    <section className="cta-section">
+
+      <div className="glass-card cta-card">
+
+        <h2>
+
+          Ready to build something amazing?
+
+        </h2>
+
+        <p>
+
+          I'm always excited to collaborate on
+          innovative AI, MERN Stack and Mobile
+          Application projects.
+
+        </p>
+
+        <div className="cta-buttons">
+
+          <button className="primary-btn">
+
+            Contact Me
+
+            <ArrowRight size={20} />
+
+          </button>
+
+          <a
+            href="/resume/Krishnanjaly_Resume.pdf"
+            download
+            className="secondary-btn"
+          >
+            Download Resume
           </a>
-        </motion.div>
+
+        </div>
+
       </div>
+
     </section>
+
+
+    </div>
   );
 }
-
-export default Projects;

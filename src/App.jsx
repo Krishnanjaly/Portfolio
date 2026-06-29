@@ -6,7 +6,6 @@ import Projects from "./components/Projects";
 import Timeline from "./components/Timeline";
 import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,7 +20,7 @@ function App() {
         <Achievements />
         <Contact />
       </main>
-      <Footer />
+
     </div>
   );
 }
