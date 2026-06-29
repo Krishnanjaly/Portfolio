@@ -74,7 +74,7 @@ function Hero() {
             </a>
           </div>
 
-          <div className="mt-10 flex gap-5">
+          <div className="mt-16 flex gap-5">
             <a href="https://github.com/Krishnanjaly" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 p-3 text-gray-300 transition hover:border-blue-400 hover:text-blue-400">
               <FaGithub size={24} />
             </a>
